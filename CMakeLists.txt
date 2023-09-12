@@ -13,6 +13,7 @@ project(
 #
 # Set project options
 #
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
 include(cmake/StandardSettings.cmake)
 include(cmake/StaticAnalyzers.cmake)
