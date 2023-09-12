@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  project:
+    container_name: project
+    image: project-dev
+    build: .
+    environment:
+      - DISPLAY=$DISPLAY
+      - DISPLAY=unix$DISPLAY
+    volumes:
+      - ../:/project
+      - "/etc/group:/etc/group:ro"
+      - "/etc/passwd:/etc/passwd:ro"
+      - "/etc/shadow:/etc/shadow:ro"
+      - "/etc/sudoers.d:/etc/sudoers.d:ro"
+      - "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+    working_dir: /project
+    user: "1000"
+    stdin_open: true
+    tty: true
+    # network_mode: host
+    #ports:
+    #  - "9005:9005"
+    networks:
+      - front-tier
+    #  - back-tier
+    command: bash
+
+networks:
+  # The presence of these objects is sufficient to define them
+  front-tier: {}
+  #back-tier: {}
